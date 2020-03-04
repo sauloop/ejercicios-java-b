@@ -7,15 +7,12 @@ public class LibroMainF {
 	public static void main(String[] args) {
 
 		ArrayList<Integer> idLibros = new ArrayList<Integer>();
-
-		System.out.println(idLibros.size());
+		ArrayList<Integer> idLibrosB = new ArrayList<Integer>();
+		ArrayList<Integer> idLibrosC = new ArrayList<Integer>();
 
 		UsuarioF usuario1 = new UsuarioF(1, idLibros, "Usuario 1");
-		UsuarioF usuario2 = new UsuarioF(2, idLibros, "Usuario 2");
-		UsuarioF usuario3 = new UsuarioF(3, idLibros, "Usuario 3");
-
-		System.out.println("Número libros usuario 1: " + usuario1.idLibros.size());
-		System.out.println("Número libros usuario 2: " + usuario2.idLibros.size());
+		UsuarioF usuario2 = new UsuarioF(2, idLibrosB, "Usuario 2");
+		UsuarioF usuario3 = new UsuarioF(3, idLibrosC, "Usuario 3");
 
 		ArrayList<Integer> idUsuarios = new ArrayList<Integer>();
 
@@ -34,20 +31,37 @@ public class LibroMainF {
 
 		BibliotecaF bibliotecaF = new BibliotecaF(usuarios, libros);
 
-		System.out.println("Número libros usuario 1: " + usuario1.getIdLibros().size());
-		System.out.println("Número libros usuario 2: " + usuario2.getIdLibros().size());
+		System.out.println("\n");
+		System.out.println("Número libros prestados libro 1: " + libro1.getNumEjemplaresPrestados());
+		System.out.println("Número libros prestados libro 2: " + libro2.getNumEjemplaresPrestados());
+		System.out.println("Número libros usuario 1: " + usuario1.idLibros.size());
+		System.out.println("Número libros usuario 2: " + usuario2.idLibros.size());
 
 		System.out.println("\n");
 		System.out.println("Préstamos:");
 		System.out.println("Usuario 2 saca libro 1: " + bibliotecaF.prestamo(usuario2, libro1));
+		if (libro1.idUsuarios.size() > 0 && usuario2.idLibros.size() > 0) {
+			System.out.println("Libro prestado al usuario: " + libro1.idUsuarios.get(0));
+			System.out.println("El usuario 2 tiene el libro: " + usuario2.idLibros.get(0));
+		}
+		System.out.println("Usuario 2 saca libro 1: " + bibliotecaF.prestamo(2, 1));
+		System.out.println("Número libros prestados libro 1: " + libro1.getNumEjemplaresPrestados());
+		System.out.println("Número libros prestados libro 2: " + libro2.getNumEjemplaresPrestados());
 		System.out.println("Número libros usuario 1: " + usuario1.idLibros.size());
 		System.out.println("Número libros usuario 2: " + usuario2.idLibros.size());
 
 		System.out.println("\n");
 		System.out.println("Devoluciones:");
 		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaF.devolucion(usuario2, libro1));
-		System.out.println("Número libros usuario f1: " + usuario1.idLibros.size());
-		System.out.println("Número libros usuario f2: " + usuario2.idLibros.size());
+		if (libro1.idUsuarios.size() > 0 && usuario2.idLibros.size() > 0) {
+			System.out.println("Libro prestado al usuario: " + libro1.idUsuarios.get(0));
+			System.out.println("El usuario 2 tiene el libro: " + usuario2.idLibros.get(0));
+		}
+		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaF.devolucion(2, 1));
+		System.out.println("Número libros prestados libro 1: " + libro1.getNumEjemplaresPrestados());
+		System.out.println("Número libros prestados libro 2: " + libro2.getNumEjemplaresPrestados());
+		System.out.println("Número libros usuario 1: " + usuario1.idLibros.size());
+		System.out.println("Número libros usuario 2: " + usuario2.idLibros.size());
 
 	}
 
