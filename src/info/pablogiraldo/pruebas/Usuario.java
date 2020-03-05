@@ -16,6 +16,10 @@ public class Usuario {
 		numInstancias++;
 	}
 
+	public int getNumInstancias() {
+		return numInstancias;
+	}
+
 	public int getId() {
 		return id;
 	}
