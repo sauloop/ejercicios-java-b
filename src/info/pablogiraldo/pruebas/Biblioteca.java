@@ -21,6 +21,18 @@ public class Biblioteca {
 		return this.libros.get(id - 1);
 	}
 
+	public void listaUsuarios() {
+		for (Usuario usr : this.usuarios) {
+			System.out.println(usr);
+		}
+	}
+
+	public void listaLibros() {
+		for (Libro lib : this.libros) {
+			System.out.println(lib);
+		}
+	}
+
 	public ArrayList<Usuario> getUsuarios() {
 		return usuarios;
 	}

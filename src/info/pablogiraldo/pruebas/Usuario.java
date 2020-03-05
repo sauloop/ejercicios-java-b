@@ -20,10 +20,6 @@ public class Usuario {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public ArrayList<Integer> getIdLibros() {
 		return idLibros;
 	}
@@ -38,6 +34,11 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Override
+	public String toString() {
+		return id + " nombre: " + nombre + ".";
 	}
 
 }

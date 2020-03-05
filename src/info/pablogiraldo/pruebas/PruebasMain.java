@@ -22,10 +22,13 @@ public class PruebasMain {
 		biblioteca.getLibro(1).setNumEjemplares(2);
 
 		System.out.println("\n");
-		System.out.println("Libro 1 ejemplares: " + biblioteca.getLibro(1).getNumEjemplares());
-		System.out.println("Libro 2 ejemplares: " + biblioteca.getLibro(2).getNumEjemplares());
-		System.out.println("Libro 1 prestados: " + biblioteca.getLibro(1).getNumEjemplaresPrestados());
-		System.out.println("Libro 2 prestados: " + biblioteca.getLibro(2).getNumEjemplaresPrestados());
+		System.out.println("Lista usuarios:");
+		biblioteca.listaUsuarios();
+		System.out.println("\n");
+		System.out.println("Lista libros:");
+		biblioteca.listaLibros();
+
+		System.out.println("\n");
 		System.out.println("Número libros usuario 1: " + biblioteca.getUsuario(1).getIdLibros().size());
 		System.out.println("Número libros usuario 2: " + biblioteca.getUsuario(2).getIdLibros().size());
 
