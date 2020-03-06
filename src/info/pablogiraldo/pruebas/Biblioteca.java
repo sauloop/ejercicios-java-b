@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class Biblioteca {
 
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	private ArrayList<Libro> libros = new ArrayList<Libro>();
+	private ArrayList<Usuario> usuarios;
+	private ArrayList<Libro> libros;
 
 	public Biblioteca() {
 		this.usuarios = new ArrayList<Usuario>();
