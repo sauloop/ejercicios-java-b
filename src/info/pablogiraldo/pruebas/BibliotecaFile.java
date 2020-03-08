@@ -22,6 +22,10 @@ public class BibliotecaFile {
 		return this.conDatos;
 	}
 
+	public void setConDatos(boolean conDatos) {
+		this.conDatos = conDatos;
+	}
+
 	public UsuarioFile getUsuario(int id) {
 		return this.usuarios.get(id - 1);
 	}
@@ -118,21 +122,22 @@ public class BibliotecaFile {
 	public void guardar() {
 
 		try {
-			FileOutputStream fos = new FileOutputStream(archivoUsuarios);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(this.usuarios);
-			oos.close();
-			fos.close();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
 
-		try {
-			FileOutputStream fos = new FileOutputStream(archivoLibros);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(this.libros);
-			oos.close();
-			fos.close();
+			FileOutputStream fosUsuarios = new FileOutputStream(archivoUsuarios);
+			FileOutputStream fosLibros = new FileOutputStream(archivoLibros);
+
+			ObjectOutputStream oosUsuarios = new ObjectOutputStream(fosUsuarios);
+			ObjectOutputStream oosLibros = new ObjectOutputStream(fosLibros);
+
+			oosUsuarios.writeObject(this.usuarios);
+			oosLibros.writeObject(this.libros);
+
+			oosUsuarios.close();
+			fosUsuarios.close();
+
+			oosLibros.close();
+			fosLibros.close();
+
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
@@ -144,30 +149,22 @@ public class BibliotecaFile {
 	@SuppressWarnings("unchecked")
 	public void cargar() {
 		try {
-			FileInputStream fis = new FileInputStream(archivoUsuarios);
-			ObjectInputStream ois = new ObjectInputStream(fis);
 
-			this.usuarios = (ArrayList<UsuarioFile>) ois.readObject();
+			FileInputStream fisUsuarios = new FileInputStream(archivoUsuarios);
+			FileInputStream fisLibros = new FileInputStream(archivoLibros);
 
-			ois.close();
-			fis.close();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-			return;
-		} catch (ClassNotFoundException c) {
-			System.out.println("Class not found");
-			c.printStackTrace();
-			return;
-		}
+			ObjectInputStream oisUsuarios = new ObjectInputStream(fisUsuarios);
+			ObjectInputStream oisLibros = new ObjectInputStream(fisLibros);
 
-		try {
-			FileInputStream fis = new FileInputStream(archivoLibros);
-			ObjectInputStream ois = new ObjectInputStream(fis);
+			this.usuarios = (ArrayList<UsuarioFile>) oisUsuarios.readObject();
+			this.libros = (ArrayList<LibroFile>) oisLibros.readObject();
 
-			this.libros = (ArrayList<LibroFile>) ois.readObject();
+			oisUsuarios.close();
+			fisUsuarios.close();
 
-			ois.close();
-			fis.close();
+			oisLibros.close();
+			fisLibros.close();
+
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			return;

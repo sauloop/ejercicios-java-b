@@ -41,6 +41,8 @@ public class FileMain {
 		biblioteca.addLibro(1, datosLibro1);
 		biblioteca.addLibro(2, datosLibro2);
 		biblioteca.getLibro(1).setNumEjemplares(2);
+
+		biblioteca.setConDatos(true);
 	}
 
 }
