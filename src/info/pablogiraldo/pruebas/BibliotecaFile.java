@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.io.*;
 
 public class BibliotecaFile {
+	private boolean conDatos = false;
 
-//	private ArrayList<SerialDemo> demos;
 	private ArrayList<UsuarioFile> usuarios;
 	private ArrayList<LibroFile> libros;
 
@@ -14,9 +14,12 @@ public class BibliotecaFile {
 	private String archivoLibros = "C:\\pruebas\\libros.ser";
 
 	public BibliotecaFile() {
-//		this.demos = new ArrayList<SerialDemo>();
 		this.usuarios = new ArrayList<UsuarioFile>();
 		this.libros = new ArrayList<LibroFile>();
+	}
+
+	public boolean isConDatos() {
+		return this.conDatos;
 	}
 
 	public UsuarioFile getUsuario(int id) {
@@ -54,14 +57,6 @@ public class BibliotecaFile {
 	public void setLibros(ArrayList<LibroFile> libros) {
 		this.libros = libros;
 	}
-
-//	public ArrayList<SerialDemo> getDemos() {
-//		return this.demos;
-//	}
-//
-//	public void setDemos(ArrayList<SerialDemo> demos) {
-//		this.demos = demos;
-//	}
 
 	public void addUsuario(int id, String nombreUsuario) {
 		UsuarioFile usr = new UsuarioFile(id, nombreUsuario);
@@ -181,6 +176,9 @@ public class BibliotecaFile {
 			c.printStackTrace();
 			return;
 		}
+
+		this.conDatos = true;
+
 		System.out.println("\n");
 		System.out.println("Datos cargados.");
 	}

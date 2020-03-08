@@ -10,14 +10,13 @@ public class FileMain {
 
 		biblioteca.cargar();
 
-		if (biblioteca.getUsuarios().size() > 0) {
+		if (biblioteca.isConDatos()) {
 			biblioteca.prestamo(1, 1);
 		}
 
 		System.out.println("\n");
 
-		if (biblioteca.getUsuarios().size() > 0 && biblioteca.getUsuario(1).getIdLibros().size() > 0
-				&& biblioteca.getLibros().size() > 0) {
+		if (biblioteca.isConDatos()) {
 			System.out.println("Nombre usuario: " + biblioteca.getUsuario(1).getNombre());
 			System.out.println("Usuario 1 tiene el libro: " + biblioteca.getUsuario(1).getIdLibros().get(0));
 			System.out.println("Ejemplares libro 1: " + biblioteca.getLibro(1).getNumEjemplares());
