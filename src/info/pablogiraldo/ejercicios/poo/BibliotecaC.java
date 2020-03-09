@@ -2,14 +2,20 @@ package info.pablogiraldo.ejercicios.poo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 //list.removeAll(Arrays.asList(2));
 
 public class BibliotecaC {
 
-	private ArrayList<UsuarioC> usuarios = new ArrayList<UsuarioC>();
-	private ArrayList<LibroC> libros = new ArrayList<LibroC>();
+	private ArrayList<UsuarioC> usuarios;
+	private ArrayList<LibroC> libros;
+
+	public BibliotecaC() {
+		this.usuarios = new ArrayList<UsuarioC>();
+		this.libros = new ArrayList<LibroC>();
+	}
 
 	public BibliotecaC(ArrayList<UsuarioC> usuarios, ArrayList<LibroC> libros) {
 		this.usuarios = usuarios;
@@ -91,9 +97,10 @@ public class BibliotecaC {
 
 			for (LibroC lib : this.libros) {
 
-				preparedStmt.setString(1, lib.getTitulo());
-				preparedStmt.setString(2, lib.getAutor());
-				preparedStmt.setBoolean(3, lib.isPrestado());
+				preparedStmt.setInt(1, lib.getIdUsuario());
+				preparedStmt.setString(2, lib.getTitulo());
+				preparedStmt.setString(3, lib.getAutor());
+				preparedStmt.setBoolean(4, lib.isPrestado());
 
 				preparedStmt.execute();
 			}
@@ -103,5 +110,49 @@ public class BibliotecaC {
 		}
 
 	}
+
+//	public void cargar(Connection con) {
+//
+//		String sql = "select * from usuario";
+//
+//		try {
+//			PreparedStatement preparedStmt = con.prepareStatement(sql);
+//
+//			ResultSet resultado = preparedStmt.executeQuery();
+//
+//			while (resultado.next()) {
+//
+//				UsuarioC usr = new UsuarioC(resultado.getInt("id"), resultado.getInt("id_libro"),
+//						resultado.getString("nombre"));
+//
+//				this.usuarios.add(usr);
+//			}
+//
+//		} catch (Exception e) {
+//			System.err.println("Error.");
+//			System.err.println(e.getMessage());
+//		}
+//
+//		sql = "select * from libro";
+//
+//		try {
+//			PreparedStatement preparedStmt = con.prepareStatement(sql);
+//
+//			ResultSet resultado = preparedStmt.executeQuery();
+//
+//			while (resultado.next()) {
+//
+//				LibroC lib = new LibroC(resultado.getInt("id"), resultado.getInt("id_usuario",
+//						resultado.getString("titulo"), resultado.getString("autor"), resultado.getBoolean("prestado")));
+//
+//				this.libros.add(lib);
+//			}
+//
+//		} catch (Exception e) {
+//			System.err.println("Error.");
+//			System.err.println(e.getMessage());
+//		}
+//
+//	}
 
 }

@@ -9,8 +9,6 @@ public class LibroMainC {
 
 	public static void main(String[] args) {
 
-//		ArrayList<Integer> idLibros = new ArrayList<Integer>();
-
 		UsuarioC usuario1 = new UsuarioC(1, 0, "Usuario A");
 		UsuarioC usuario2 = new UsuarioC(2, 0, "Usuario B");
 		UsuarioC usuario3 = new UsuarioC(3, 0, "Usuario C");
@@ -30,6 +28,8 @@ public class LibroMainC {
 
 		BibliotecaC biblioteca = new BibliotecaC(usuarios, libros);
 
+//		BibliotecaC biblioteca = new BibliotecaC();
+
 		String url = "jdbc:mysql://localhost:3306/biblioteca";
 		String user = "root";
 		String pass = "";
@@ -42,16 +42,22 @@ public class LibroMainC {
 
 			biblioteca.guardar(con);
 
+//			biblioteca.cargar(con);
+
 			con.close();
 
 			System.out.println("Biblioteca guardada.");
+
+//			System.out.println("Biblioteca cargada.");
 
 		} catch (Exception e) {
 			System.err.println("Error.");
 			System.err.println(e.getMessage());
 		}
 
-//		System.out.println(biblioteca.getUsuarios().get(0).getNombre());
+		if (biblioteca.getUsuarios().size() > 0) {
+			System.out.println(biblioteca.getUsuarios().get(0).getNombre());
+		}
 
 //		System.out.println("\n");
 //		System.out.println("Préstamos:");
