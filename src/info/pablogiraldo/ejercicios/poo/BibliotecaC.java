@@ -90,7 +90,7 @@ public class BibliotecaC {
 			System.err.println(e.getMessage());
 		}
 
-		sql = "insert into libro(titulo,autor,prestado) values (?,?,?)";
+		sql = "insert into libro(id_usuario,titulo,autor,prestado) values (?,?,?,?)";
 
 		try {
 			PreparedStatement preparedStmt = con.prepareStatement(sql);
@@ -111,48 +111,50 @@ public class BibliotecaC {
 
 	}
 
-//	public void cargar(Connection con) {
-//
-//		String sql = "select * from usuario";
-//
-//		try {
-//			PreparedStatement preparedStmt = con.prepareStatement(sql);
-//
-//			ResultSet resultado = preparedStmt.executeQuery();
-//
-//			while (resultado.next()) {
-//
-//				UsuarioC usr = new UsuarioC(resultado.getInt("id"), resultado.getInt("id_libro"),
-//						resultado.getString("nombre"));
-//
-//				this.usuarios.add(usr);
-//			}
-//
-//		} catch (Exception e) {
-//			System.err.println("Error.");
-//			System.err.println(e.getMessage());
-//		}
-//
-//		sql = "select * from libro";
-//
-//		try {
-//			PreparedStatement preparedStmt = con.prepareStatement(sql);
-//
-//			ResultSet resultado = preparedStmt.executeQuery();
-//
-//			while (resultado.next()) {
-//
-//				LibroC lib = new LibroC(resultado.getInt("id"), resultado.getInt("id_usuario",
-//						resultado.getString("titulo"), resultado.getString("autor"), resultado.getBoolean("prestado")));
-//
-//				this.libros.add(lib);
-//			}
-//
-//		} catch (Exception e) {
-//			System.err.println("Error.");
-//			System.err.println(e.getMessage());
-//		}
-//
-//	}
+	public void cargar(Connection con) {
+
+		String sql = "select * from usuario";
+
+		try {
+
+			PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+			ResultSet resultado = preparedStmt.executeQuery();
+
+			while (resultado.next()) {
+
+				UsuarioC usr = new UsuarioC(resultado.getInt("id"), resultado.getInt("id_libro"),
+						resultado.getString("nombre"));
+
+				this.usuarios.add(usr);
+			}
+
+		} catch (Exception e) {
+			System.err.println("Error.");
+			System.err.println(e.getMessage());
+		}
+
+		sql = "select * from libro";
+
+		try {
+
+			PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+			ResultSet resultado = preparedStmt.executeQuery();
+
+			while (resultado.next()) {
+
+				LibroC lib = new LibroC(resultado.getInt("id"), resultado.getInt("id_usuario"),
+						resultado.getString("titulo"), resultado.getString("autor"), resultado.getBoolean("prestado"));
+
+				this.libros.add(lib);
+			}
+
+		} catch (Exception e) {
+			System.err.println("Error.");
+			System.err.println(e.getMessage());
+		}
+
+	}
 
 }
