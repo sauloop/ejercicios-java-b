@@ -1,5 +1,7 @@
 package info.pablogiraldo.ejercicios.poo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 //list.removeAll(Arrays.asList(2));
@@ -61,6 +63,45 @@ public class BibliotecaC {
 		} else {
 			return false;
 		}
+	}
+
+	public void guardar(Connection con) {
+
+		String sql = "insert into usuario(id_libro,nombre) values (?,?)";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+			for (UsuarioC usr : this.usuarios) {
+
+				preparedStmt.setInt(1, usr.getIdLibro());
+				preparedStmt.setString(2, usr.getNombre());
+
+				preparedStmt.execute();
+			}
+		} catch (Exception e) {
+			System.err.println("Error.");
+			System.err.println(e.getMessage());
+		}
+
+		sql = "insert into libro(titulo,autor,prestado) values (?,?,?)";
+
+		try {
+			PreparedStatement preparedStmt = con.prepareStatement(sql);
+
+			for (LibroC lib : this.libros) {
+
+				preparedStmt.setString(1, lib.getTitulo());
+				preparedStmt.setString(2, lib.getAutor());
+				preparedStmt.setBoolean(3, lib.isPrestado());
+
+				preparedStmt.execute();
+			}
+		} catch (Exception e) {
+			System.err.println("Error.");
+			System.err.println(e.getMessage());
+		}
+
 	}
 
 }

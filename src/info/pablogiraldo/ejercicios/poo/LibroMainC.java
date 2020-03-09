@@ -1,5 +1,8 @@
 package info.pablogiraldo.ejercicios.poo;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class LibroMainC {
@@ -25,19 +28,42 @@ public class LibroMainC {
 		libros.add(libro1);
 		libros.add(libro2);
 
-		BibliotecaC bibliotecaC = new BibliotecaC(usuarios, libros);
+		BibliotecaC biblioteca = new BibliotecaC(usuarios, libros);
 
-		System.out.println("\n");
-		System.out.println("Préstamos:");
-		System.out.println("Usuario 2 saca libro 1: " + bibliotecaC.prestamo(2, 1));
-		System.out.println(bibliotecaC.getUsuarios().get(1).getIdLibro());
-		System.out.println("Usuario 2 saca libro 1: " + bibliotecaC.prestamo(2, 1));
+		String url = "jdbc:mysql://localhost:3306/biblioteca";
+		String user = "root";
+		String pass = "";
 
-		System.out.println("\n");
-		System.out.println("Devoluciones:");
-		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaC.devolucion(2, 1));
-		System.out.println(bibliotecaC.getUsuarios().get(1).getIdLibro());
-		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaC.devolucion(2, 1));
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			con = DriverManager.getConnection(url, user, pass);
+
+			biblioteca.guardar(con);
+
+			con.close();
+
+			System.out.println("Biblioteca guardada.");
+
+		} catch (Exception e) {
+			System.err.println("Error.");
+			System.err.println(e.getMessage());
+		}
+
+//		System.out.println(biblioteca.getUsuarios().get(0).getNombre());
+
+//		System.out.println("\n");
+//		System.out.println("Préstamos:");
+//		System.out.println("Usuario 2 saca libro 1: " + bibliotecaC.prestamo(2, 1));
+//		System.out.println(bibliotecaC.getUsuarios().get(1).getIdLibro());
+//		System.out.println("Usuario 2 saca libro 1: " + bibliotecaC.prestamo(2, 1));
+//
+//		System.out.println("\n");
+//		System.out.println("Devoluciones:");
+//		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaC.devolucion(2, 1));
+//		System.out.println(bibliotecaC.getUsuarios().get(1).getIdLibro());
+//		System.out.println("Usuario 2 devuelve libro 1: " + bibliotecaC.devolucion(2, 1));
 
 	}
 
