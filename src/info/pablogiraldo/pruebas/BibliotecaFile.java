@@ -10,8 +10,8 @@ public class BibliotecaFile {
 	private ArrayList<UsuarioFile> usuarios;
 	private ArrayList<LibroFile> libros;
 
-	private String archivoUsuarios = "C:\\pruebas\\usuarios.ser";
-	private String archivoLibros = "C:\\pruebas\\libros.ser";
+	private String archivoUsuarios = "C:\\dev\\guardados\\usuarios.ser";
+	private String archivoLibros = "C:\\dev\\guardados\\libros.ser";
 
 	public BibliotecaFile() {
 		this.usuarios = new ArrayList<UsuarioFile>();
