@@ -109,6 +109,7 @@ public class BibliotecaC {
 			System.err.println(e.getMessage());
 		}
 
+		System.out.println("Biblioteca guardada.");
 	}
 
 	public void cargar(Connection con) {
@@ -154,6 +155,8 @@ public class BibliotecaC {
 			System.err.println("Error.");
 			System.err.println(e.getMessage());
 		}
+
+		System.out.println("Biblioteca cargada.");
 
 	}
 

@@ -25,7 +25,7 @@ public class LibroMainC {
 //
 //		libros.add(libro1);
 //		libros.add(libro2);
-
+//
 //		BibliotecaC biblioteca = new BibliotecaC(usuarios, libros);
 
 		BibliotecaC biblioteca = new BibliotecaC();
@@ -41,15 +41,14 @@ public class LibroMainC {
 
 			con = DriverManager.getConnection(url, user, pass);
 
-//			biblioteca.guardar(con);
-
 			biblioteca.cargar(con);
+
+//			biblioteca.guardar(con);
 
 			con.close();
 
 //			System.out.println("Biblioteca guardada.");
-
-			System.out.println("Biblioteca cargada.");
+//			System.out.println("Biblioteca cargada.");
 
 		} catch (Exception e) {
 			System.err.println("Error.");
